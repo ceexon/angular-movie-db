@@ -1,0 +1,31 @@
+.search-bar-wrapper {
+  width: 100%;
+  .search-input-box {
+    width: 80%;
+
+    input{
+      outline: none;
+      color: #000000;
+      font-family: "Raleway Regular", sans-serif !important;
+      font-size: 1.5em;
+      text-align: center;
+      height: 45px;
+      max-height: 45px;
+    }
+
+    input::placeholder{
+      font-family: "Raleway LightIt", sans-serif !important;
+      text-align: center;
+      font-size: 1.1em;
+    }
+  }
+
+  .search-btn-box {
+    left: 78%;
+    top: 0;
+    height: 45px;
+    max-height: 45px;
+    font-family: "Raleway Medium", sans-serif !important;
+    font-size: 1.2em;
+  }
+}

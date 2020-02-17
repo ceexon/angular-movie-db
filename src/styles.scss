@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+.bg-red {
+  background-color: #D10000 !important;
+}
+
+.text-red {
+  color: #D10000 !important;
+}
+
+/* Fonts */
+@font-face {
+  font-family: "Raleway Bold";
+  src: url(src/assets/fonts/Raleway-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Raleway Light";
+  src: url(src/assets/fonts/Raleway-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Raleway LightIt";
+  src: url(src/assets/fonts/Raleway-LightItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Raleway Medium";
+  src: url(src/assets/fonts/Raleway-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Raleway Regular";
+  src: url(src/assets/fonts/Raleway-Regular.ttf) format('truetype');
+}
+
+body, * {
+  font-family: "Raleway Regular", sans-serif;
+}
