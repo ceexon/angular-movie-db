@@ -1,0 +1,15 @@
+.navigation-container {
+  .nav-tabs, .nav-tabs:hover {
+    background-color: #B8B8B8;
+    color: #000000aa;
+    font-family: "Raleway Bold", sans-serif;
+    font-size: 1.5em;
+    max-width: 400px;
+    text-decoration: none;
+  }
+
+  .nav-tabs.active, .nav-tabs.active:hover {
+    background-color: #D10000;
+    color: #ffffff;
+  }
+}
