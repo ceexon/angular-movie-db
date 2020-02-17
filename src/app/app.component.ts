@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'moviedb';
+  movieDetailPage = false;
+
+  onOpenMovieDetailPage() {
+    this.movieDetailPage = true;
+  }
+
+  onLeaveMovieDetailPage() {
+    this.movieDetailPage = false;
+  }
 }

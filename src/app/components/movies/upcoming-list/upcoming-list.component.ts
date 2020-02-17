@@ -14,7 +14,6 @@ export class UpcomingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.movies = this.movieService.getMovies();
-    console.log(this.movies);
   }
 
 }

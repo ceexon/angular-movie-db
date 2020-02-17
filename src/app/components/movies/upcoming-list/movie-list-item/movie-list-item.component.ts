@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Movie} from '../../../../models/movie.model';
+import {MovieService} from '../../../../services/movie.service';
 
 @Component({
   selector: 'app-movie-list-item',
@@ -10,9 +11,13 @@ export class MovieListItemComponent implements OnInit {
 
   @Input() movie: Movie;
 
-  constructor() { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
+  }
+
+  onSelectMovie() {
+    this.movieService.selectMovie.emit(this.movie);
   }
 
 }

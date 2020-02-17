@@ -1,1 +1,9 @@
-<p>movie-detail works!</p>
+<h1 class="mx-auto my-5 text-center" *ngIf="movie; else noMovieSelected">
+  {{movie.title}}
+</h1>
+
+<ng-template #noMovieSelected>
+  <div class="container my-5 py-5 w-100 display-1" >
+    No Movie Selected
+  </div>
+</ng-template>

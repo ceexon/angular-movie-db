@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Movie} from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
+
+  constructor() { }
 
   private movies: Movie[] = [
     new Movie(
@@ -20,7 +22,7 @@ export class MovieService {
       new Date('21-12-2019').toDateString(),
       'assets/images/1917.jpg',
       '/link-to-backdrop',
-      false
+      true
     ),
     new Movie(
       2,
@@ -110,7 +112,7 @@ export class MovieService {
       new Date('21-12-2019').toDateString(),
       'assets/images/jumanji.jpg',
       '/link-to-backdrop',
-      false
+      true
     ),
     new Movie(
       7,
@@ -129,7 +131,7 @@ export class MovieService {
     ),
   ];
 
-  constructor() { }
+  selectMovie = new EventEmitter<Movie>();
 
   getMovies() {
     return this.movies.slice();

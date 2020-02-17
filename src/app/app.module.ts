@@ -10,6 +10,7 @@ import { SearchBarComponent } from './components/header/search-bar/search-bar.co
 import { NavigationComponent } from './components/header/navigation/navigation.component';
 import { MovieListItemComponent } from './components/movies/upcoming-list/movie-list-item/movie-list-item.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import {MovieService} from './services/movie.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { MoviesComponent } from './components/movies/movies.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    MovieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
