@@ -9,6 +9,7 @@ import { MovieDetailComponent } from './components/movies/movie-detail/movie-det
 import { SearchBarComponent } from './components/header/search-bar/search-bar.component';
 import { NavigationComponent } from './components/header/navigation/navigation.component';
 import { MovieListItemComponent } from './components/movies/upcoming-list/movie-list-item/movie-list-item.component';
+import { MoviesComponent } from './components/movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MovieListItemComponent } from './components/movies/upcoming-list/movie-
     MovieDetailComponent,
     SearchBarComponent,
     NavigationComponent,
-    MovieListItemComponent
+    MovieListItemComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
