@@ -11,9 +11,11 @@ import {MovieService} from '../../services/movie.service';
 export class MovieDetailComponent implements OnInit {
   movie: Movie;
   movieDate: string;
+  isFav: boolean;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private movieService: MovieService
   ) {
   }
 
@@ -21,9 +23,14 @@ export class MovieDetailComponent implements OnInit {
     this.route.data.subscribe(
       (data) => {
         this.movie = data.movie;
+        this.isFav = this.movie.favorite;
         // this.movieDate = new Date(this.movie.releaseDate).toDateString();
       }
     );
-    console.log('after   -----> ---', this.movie);
+  }
+
+  onToggleFavorite() {
+    this.isFav = !this.isFav;
+    this.movieService.toggleFavorite(this.movie);
   }
 }

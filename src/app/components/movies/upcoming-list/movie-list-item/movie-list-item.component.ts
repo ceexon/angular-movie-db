@@ -21,4 +21,7 @@ export class MovieListItemComponent implements OnInit {
     this.router.navigate(['/movie/details', this.movie.id]);
   }
 
+  onToggleFavorite() {
+    this.movieService.toggleFavorite(this.movie);
+  }
 }
