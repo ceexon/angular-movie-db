@@ -1,0 +1,107 @@
+<div class="movie-detail-wrapper" >
+  <div class="movie-detail-wrapper-shadow position-absolute bg-image-movie">
+    <img [src]="movie.poster" alt="{{movie.title}}">
+  </div>
+  <div class="movie-detail-wrapper-shadow position-fixed"></div>
+  <div class="movie-content position-relative pt-4 pb-5 px-5">
+    <app-movie-page-navigation></app-movie-page-navigation>
+
+    <div class="my-5 pt-5">
+      <div class="row">
+        <div class="col-10 mx-auto">
+          <div class="d-flex justify-content-between movie-top">
+            <div class="movie-poster">
+              <img [src]="movie.poster" alt="{{movie.title}}" class="img-fluid">
+            </div>
+            <div class="col-5 d-flex-flex-column text-white movie-tag-detail">
+              <div class="tag-text mb-4">
+                {{movie.tagline}}
+              </div>
+              <div class="row align-items-center">
+                <div class="rating col-4 d-flex flex-column align-items-center justify-content-center">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       width="63" height="60"
+                       viewBox="0 0 48.535 46.16">
+                    <path id="rate"
+                          d="M31.767,17.035,24.268,1.84l-7.5,15.195L0,19.471,12.134,31.3,9.269,48l15-7.885,15,7.885L36.4,31.3,48.535,19.471Z"
+                          transform="translate(0 -1.84)" fill="#d10000"
+                    />
+                  </svg>
+                  <p class="rate-score text-red mb-0">
+                    {{movie.rating}}
+                  </p>
+                </div>
+                <div class="rating col-4">
+                  <svg title="Add to Favorites" xmlns="http://www.w3.org/2000/svg" width="75" height="65" viewBox="0 0 85.511 75.716">
+                    <g id="favorite" transform="translate(2.521 2.5)">
+                      <path
+                        id="Path_2"
+                        d="M70.473,6.131A19.881,19.881,0,0,0,60.11,3.253c-7.358,0-14.311,3.932-19.577,11.071l-.3.406-.3-.406C34.661,7.185,27.706,3.253,20.35,3.253A19.852,19.852,0,0,0,9.993,6.131C.586,11.852-4.745,25.951,5.771,43.381c1.062,1.676,11.044,16.777,34.02,30.463a.834.834,0,0,0,.441.125.852.852,0,0,0,.448-.128C64.138,59.858,74.274,44.025,74.691,43.363,85.218,25.945,79.884,11.853,70.473,6.131Z"
+                        transform="translate(0 -3.253)"
+                        [ngStyle]="movie.favorite ?
+                          {fill: '#d10000'} :
+                          {fill: 'none' }"
+                        stroke="#d10000" stroke-width="5"
+                      />
+                      <path
+                        id="Path_5"
+                        d="M21.333,12.667c0,.8-.069,1.444-.868,1.444H14.111v6.354c0,.8-.646.868-1.444.868s-1.444-.071-1.444-.868V14.111H4.868c-.8,0-.868-.646-.868-1.444s.071-1.444.868-1.444h6.354V4.868c0-.8.646-.868,1.444-.868s1.444.069,1.444.868v6.354h6.354C21.264,11.222,21.333,11.868,21.333,12.667Z"
+                        transform="translate(27.5 22.5)"
+                        fill="#d10000"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="full-movie-brief row text-white my-5 pt-5">
+            <div class="col-7">
+              <div class="title-box mb-5">
+                <h1 class="mini-title mb-2">
+                  title:
+                </h1>
+                <h1 class="title text-red">{{movie.title}}</h1>
+              </div>
+              <div class="title-box">
+                <h1 class="mini-title mb-2">Overview: </h1>
+                <p class="overview-text">
+                  {{movie.overview}}
+                </p>
+              </div>
+            </div>
+            <div class="col-4 ml-2 px-5">
+              <div class="mini-title-item mb-4">
+                <h3 class="mini-title-sm mb-1">Genres:</h3>
+                <p class="genres">
+                  <span class="mini-sm-item" *ngFor="let genre of movie.genres">{{genre}}</span>
+                </p>
+              </div>
+
+              <div class="mini-title-item mb-4">
+                <h3 class="mini-title-sm mb-1">Status:</h3>
+                <p class="mini-sm-item">{{movie.status}}</p>
+              </div>
+
+              <div class="mini-title-item mb-4">
+                <h3 class="mini-title-sm mb-1">Release date: </h3>
+                <p class="mini-sm-item">
+                  {{movie.releaseDate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noMovieSelected>
+  <app-header></app-header>
+  <app-navigation></app-navigation>
+  <div class="text-center container my-5 py-5">
+    <p class="text display-4">Sorry? Details of the Movie could not be found.</p>
+  </div>
+</ng-template>

@@ -3,6 +3,10 @@
   background-color: #D10000 !important;
 }
 
+.bg-black {
+  background-color: #000000 !important;
+}
+
 .text-red {
   color: #D10000 !important;
 }
@@ -35,4 +39,8 @@
 
 body, * {
   font-family: "Raleway Regular", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
 }

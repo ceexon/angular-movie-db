@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Movie} from '../../../../models/movie.model';
 import {MovieService} from '../../../../services/movie.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-movie-list-item',
@@ -11,13 +12,13 @@ export class MovieListItemComponent implements OnInit {
 
   @Input() movie: Movie;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSelectMovie() {
-    this.movieService.selectMovie.emit(this.movie);
+    this.router.navigate(['/movie/details', this.movie.id]);
   }
 
 }

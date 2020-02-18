@@ -1,3 +1,10 @@
+.btn-outline-white {
+  border: 1px solid #ffffff;
+  border-radius: 0;
+  font-size: 1.2em;
+  font-family: "Raleway Medium", sans-serif !important;
+}
+
 .search-bar-wrapper {
   width: 100%;
   display: flex;
@@ -9,25 +16,24 @@
       outline: none;
       color: #000000;
       font-family: "Raleway Regular", sans-serif !important;
-      font-size: 1.5em;
+      font-size: 1.3em;
       text-align: center;
-      height: 45px;
-      max-height: 45px;
+      height: 40px;
+      max-height: 40px;
     }
 
     input::placeholder{
       font-family: "Raleway LightIt", sans-serif !important;
       text-align: center;
-      font-size: 1.1em;
     }
   }
 
   .search-btn-box {
     left: 78%;
     top: 0;
-    height: 45px;
-    max-height: 45px;
+    height: 46px;
+    max-height: 46px;
     font-family: "Raleway Medium", sans-serif !important;
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 }

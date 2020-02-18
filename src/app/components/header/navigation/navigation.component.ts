@@ -12,15 +12,13 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
     const currentPath =  window.location.pathname;
-    if (currentPath === '') {
+    if (currentPath === '' || currentPath === 'upcoming') {
       this.activePage = 'up';
     } else if (currentPath === '/movies/favourites') {
       this.activePage = 'fav';
     } else {
       this.activePage = 'up';
     }
-
-    console.log(currentPath);
   }
 
   onLinkClick(page: string) {
