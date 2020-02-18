@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
@@ -11,6 +11,18 @@ export class NavigationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const currentPath =  window.location.pathname;
+    if (currentPath === '' || currentPath === 'upcoming') {
+      this.activePage = 'up';
+    } else if (currentPath === '/movies/favourites') {
+      this.activePage = 'fav';
+    } else {
+      this.activePage = 'up';
+    }
+  }
+
+  onLinkClick(page: string) {
+    this.activePage = page;
   }
 
 }

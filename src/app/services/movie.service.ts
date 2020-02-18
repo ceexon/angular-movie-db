@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Movie} from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
+
+  constructor() { }
 
   private movies: Movie[] = [
     new Movie(
@@ -17,10 +19,10 @@ export class MovieService {
       'Time is the Enemy',
       'Released',
       8.9,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/1917.jpg',
       '/link-to-backdrop',
-      false
+      true
     ),
     new Movie(
       2,
@@ -32,7 +34,7 @@ export class MovieService {
       'Comedy with some action is good',
       'Released',
       8.7,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/birdsofprey.jpg',
       '/link-to-backdrop',
       false
@@ -47,7 +49,7 @@ export class MovieService {
       'Comedy with some action is good',
       'Released',
       8,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/trick.jpg',
       '/link-to-backdrop',
       false
@@ -62,7 +64,7 @@ export class MovieService {
       'Comedy with some action is good',
       'Released',
       9,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/buffaloed-1.jpg',
       '/link-to-backdrop',
       false
@@ -77,7 +79,7 @@ export class MovieService {
       'Comedy with some action is good',
       'Released',
       6.9,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/dolittle.jpg',
       '/link-to-backdrop',
       false
@@ -92,7 +94,7 @@ export class MovieService {
       'Comedy with some action is good',
       'Released',
       8.6,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/jojo-rabbit.jpg',
       '/link-to-backdrop',
       false
@@ -107,10 +109,10 @@ export class MovieService {
       'Comedy with some action is good',
       'Released',
       8.3,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/jumanji.jpg',
       '/link-to-backdrop',
-      false
+      true
     ),
     new Movie(
       7,
@@ -122,16 +124,24 @@ export class MovieService {
       'Comedy with some action is good',
       'Released',
       8.3,
-      new Date('21-12-2019').toDateString(),
+      '21-12-2019',
       'assets/images/ipman4.jpg',
       '/link-to-backdrop',
       false
     ),
   ];
 
-  constructor() { }
+  selectMovie = new EventEmitter<Movie>();
 
   getMovies() {
     return this.movies.slice();
+  }
+
+  getMovie(id: number) {
+    return this.movies.find(
+      (movie) => {
+        return movie.id === id;
+      }
+    );
   }
 }
