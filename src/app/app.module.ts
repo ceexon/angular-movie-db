@@ -15,15 +15,17 @@ import { MoviePageNavigationComponent } from './components/movie-detail/movie-pa
 import { SearchComponent } from './components/movies/search/search.component';
 import {MovieResolverService} from './services/movie-resolver.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import {FavouritesComponent} from './components/movies/favourites/favourites.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    NavigationComponent,
+    SearchBarComponent,
     UpcomingListComponent,
     MovieDetailComponent,
-    SearchBarComponent,
-    NavigationComponent,
+    FavouritesComponent,
     MovieListItemComponent,
     MoviesComponent,
     MoviePageNavigationComponent,

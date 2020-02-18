@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Movie} from '../../../models/movie.model';
+import {MovieService} from '../../../services/movie.service';
 
 @Component({
   selector: 'app-favourites',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavouritesComponent implements OnInit {
 
-  constructor() { }
+  movies: Movie[];
+
+  constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
+    this.movies = this.movieService.getFavorites();
+    this.movieService.favoritesUpdated.subscribe(
+      (ms: Movie[]) => {
+        this.movies = ms;
+      }
+    );
   }
 
 }

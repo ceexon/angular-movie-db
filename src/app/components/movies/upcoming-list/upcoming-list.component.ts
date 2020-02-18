@@ -14,6 +14,11 @@ export class UpcomingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.movies = this.movieService.getMovies();
+    this.movieService.moviesUpdated.subscribe(
+      (ms: Movie[]) => {
+        this.movies = ms;
+      }
+    );
   }
 
 }

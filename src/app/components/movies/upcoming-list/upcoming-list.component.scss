@@ -1,10 +1,10 @@
 .movie-list-wrapper {
-  justify-content: space-between;
 
   app-movie-list-item {
     flex-basis: 23%;
     width: 23%;
     max-width: 23%;
     height: 100%;
+    margin-right: 2%;
   }
 }

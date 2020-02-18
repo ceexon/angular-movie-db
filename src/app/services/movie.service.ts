@@ -115,7 +115,7 @@ export class MovieService {
       true
     ),
     new Movie(
-      7,
+      8,
       'IP Man 4',
       'The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz ' +
       'graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! ' +
@@ -131,7 +131,10 @@ export class MovieService {
     ),
   ];
 
-  selectMovie = new EventEmitter<Movie>();
+  private favourites: Movie[] = this.movies.filter(m => m.favorite === true );
+
+  favoritesUpdated = new EventEmitter<Movie[]>();
+  moviesUpdated = new EventEmitter<Movie[]>();
 
   getMovies() {
     return this.movies.slice();
@@ -143,5 +146,25 @@ export class MovieService {
         return movie.id === id;
       }
     );
+  }
+
+  getFavorites() {
+    return this.favourites;
+  }
+
+  toggleFavorite(movie: Movie) {
+    const favMovie = this.movies.find(
+    (mov) => {
+        return mov.id === movie.id;
+      }
+    );
+    if (favMovie.favorite) {
+      this.favourites = this.favourites.filter(mov => mov !== movie);
+    } else {
+      this.favourites.push(movie);
+    }
+    favMovie.favorite = !favMovie.favorite;
+    this.favoritesUpdated.emit(this.favourites.slice());
+    this.moviesUpdated.emit(this.movies.slice());
   }
 }

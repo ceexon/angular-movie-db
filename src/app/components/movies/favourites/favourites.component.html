@@ -1,1 +1,8 @@
-<p>favourites works!</p>
+<div class="container movie-list-container mt-5">
+  <div class="movie-list-wrapper d-flex flex-wrap">
+    <app-movie-list-item
+      *ngFor="let movie of movies"
+      [movie]="movie"
+    ></app-movie-list-item>
+  </div>
+</div>
