@@ -13,7 +13,10 @@ Installation
 
         $ yarn || npm install
         
-3. Create a .env and add your moviedb API Key.
+3. check your src/app/environments folder
+    - rename emv.example.ts to env.ts
+    - replace the variables with your exact variable names
+    - save the file and your good to go
 
 4. start the server
 

@@ -1,6 +1,6 @@
 <div class="wrapper-item mb-5">
   <div class="movie-image d-flex">
-    <img [src]="movie.poster" alt="" class="img-fluid">
+    <img [src]="onLoadImage(movie.poster_path, 'original')" alt="" class="img-fluid">
 
     <div class="movie-hover-backdrop">
       <a
@@ -15,7 +15,7 @@
     <div class="col-10 pl-3">
       <h2 class="movie-name">{{movie.title.length <= 11 ? movie.title :movie.title.substr(0,11)+ '...'}}</h2>
       <ul class="movie-genre-list">
-        <li *ngFor="let genre of movie.genres">{{genre}}</li>
+        <li *ngFor="let genre of movie.genre_ids">{{genre}}</li>
       </ul>
     </div>
     <div class="col-2">

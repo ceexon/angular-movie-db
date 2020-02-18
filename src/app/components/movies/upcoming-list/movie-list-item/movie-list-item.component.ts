@@ -24,4 +24,8 @@ export class MovieListItemComponent implements OnInit {
   onToggleFavorite() {
     this.movieService.toggleFavorite(this.movie);
   }
+
+  onLoadImage(path: string, size: string) {
+    return this.movieService.getImage(path, size);
+  }
 }
