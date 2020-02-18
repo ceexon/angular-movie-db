@@ -1,4 +1,4 @@
-<div class="movie-detail-wrapper" >
+<div class="movie-detail-wrapper" *ngIf="movie; else noMovieSelected">
   <div class="movie-detail-wrapper-shadow position-absolute bg-image-movie">
     <img [src]="onLoadImage(movie.backdrop_path, 'original')" alt="{{movie.title}}">
   </div>
@@ -14,9 +14,9 @@
               <img [src]="onLoadImage(movie.poster_path, 'original')" alt="{{movie.title}}" class="img-fluid">
             </div>
             <div class="col-5 d-flex-flex-column text-white movie-tag-detail">
-<!--              <div class="tag-text mb-4">-->
-<!--                {{movie.overview}}-->
-<!--              </div>-->
+              <div class="tag-text mb-4">
+                {{movie.tagline}}
+              </div>
               <div class="row align-items-center">
                 <div class="rating col-4 d-flex flex-column align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@
                     />
                   </svg>
                   <p class="rate-score text-red mb-0">
-                    {{movie.popularity}}
+                    {{movie.vote_average}}
                   </p>
                 </div>
                 <div class="rating col-4">
@@ -81,14 +81,14 @@
               <div class="mini-title-item mb-4">
                 <h3 class="mini-title-sm mb-1">Genres:</h3>
                 <p class="genres">
-                  <span class="mini-sm-item" *ngFor="let genre of movie.genre_ids">{{genre}}</span>
+                  <span class="mini-sm-item" *ngFor="let genre of movie.genres">{{genre.name}}</span>
                 </p>
               </div>
 
-<!--              <div class="mini-title-item mb-4">-->
-<!--                <h3 class="mini-title-sm mb-1">Status:</h3>-->
-<!--                <p class="mini-sm-item">{{movie.}}</p>-->
-<!--              </div>-->
+              <div class="mini-title-item mb-4">
+                <h3 class="mini-title-sm mb-1">Status:</h3>
+                <p class="mini-sm-item">{{movie.status}}</p>
+              </div>
 
               <div class="mini-title-item mb-4">
                 <h3 class="mini-title-sm mb-1">Release date: </h3>
@@ -106,9 +106,7 @@
 
 
 <ng-template #noMovieSelected>
-  <app-header></app-header>
-  <app-navigation></app-navigation>
-  <div class="text-center container my-5 py-5">
-    <p class="text display-4">Sorry? Details of the Movie could not be found.</p>
+  <div class="m-5 p-5 display-1 text-center">
+    Loading...
   </div>
 </ng-template>

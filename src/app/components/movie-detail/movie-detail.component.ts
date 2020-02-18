@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Movie} from '../../models/movie.model';
+import {Component, OnInit} from '@angular/core';
+import {MovieDetailModel} from '../../models/movie-detail.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MovieService} from '../../services/movie.service';
 
@@ -9,8 +9,7 @@ import {MovieService} from '../../services/movie.service';
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit {
-  movie: Movie;
-  movieDate: string;
+  movie: MovieDetailModel;
   isFav: boolean;
 
   constructor(
@@ -20,11 +19,10 @@ export class MovieDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe(
-      (data) => {
-        this.movie = data.movie;
-        this.isFav = this.movie.favorite;
-        // this.movieDate = new Date(this.movie.releaseDate).toDateString();
+    this.movieService.getMovie(this.route.snapshot.params.id).subscribe(
+      (movie) => {
+        this.movie = movie;
+        this.isFav = !!this.movieService.isFavorite(movie);
       }
     );
   }
