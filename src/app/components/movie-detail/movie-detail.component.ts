@@ -33,4 +33,8 @@ export class MovieDetailComponent implements OnInit {
     this.isFav = !this.isFav;
     this.movieService.toggleFavorite(this.movie);
   }
+
+  onLoadImage(path: string, size: string) {
+    return this.movieService.getImage(path, size);
+  }
 }

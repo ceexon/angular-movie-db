@@ -16,6 +16,8 @@ import { SearchComponent } from './components/movies/search/search.component';
 import {MovieResolverService} from './services/movie-resolver.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {FavouritesComponent} from './components/movies/favourites/favourites.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {FavouritesComponent} from './components/movies/favourites/favourites.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     MovieService,

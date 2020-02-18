@@ -13,12 +13,10 @@ export class UpcomingListComponent implements OnInit {
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
-    this.movies = this.movieService.getMovies();
-    this.movieService.moviesUpdated.subscribe(
-      (ms: Movie[]) => {
-        this.movies = ms;
-      }
-    );
+    this.movieService.fetUpcoming().subscribe(response => {
+      this.movies = response.results;
+      this.movieService.setMovies(response.results);
+    });
   }
 
 }
