@@ -17,7 +17,11 @@ export class FavouritesComponent implements OnInit {
     this.movies = this.movieService.getFavorites();
     this.movieService.favoritesUpdated.subscribe(
       (ms: Movie[]) => {
-        this.movies = ms;
+        this.movies = ms.map(
+          (movie) => {
+            movie.favorite = !!this.movieService.isFavorite(movie);
+            return movie;
+        });
       }
     );
   }
