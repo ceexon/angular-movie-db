@@ -2,10 +2,16 @@
     <a routerLink="/upcoming" class="btn btn-outline-white text-white d-block mx-3">Upcoming</a>
     <a routerLink="/favourites" class="btn btn-outline-white text-white d-block mx-3">Favorites</a>
 </div>
-<form class="col-12 search-bar-wrapper d-flex">
+<form class="col-12 search-bar-wrapper d-flex" (ngSubmit)="onSubmit()">
   <div class=" form-group search-input-box rounded-left">
-      <label for="search-input" class="d-none"></label>
-      <input id="search-input" type="text" class="form-control shadow-none rounded-left rounded-left-0" placeholder="search here for movies">
+      <label for="query" class="d-none"></label>
+      <input
+        id="query"
+        name="query"
+        type="text"
+        [(ngModel)]="query"
+        class="form-control shadow-none rounded-left rounded-left-0"
+        placeholder="search here for movies">
   </div>
   <button type="submit" class=" form-group border-0 px-5 search-btn-box position-absolute text-white bg-black rounded-right">
     Search

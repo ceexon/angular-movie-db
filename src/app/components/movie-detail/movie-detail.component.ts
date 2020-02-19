@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MovieDetailModel} from '../../models/movie-detail.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+
 import {MovieService} from '../../services/movie.service';
+import {MovieDetailModel} from '../../models/movie-detail.model';
+import {Movie} from "../../models/movie.model";
 
 @Component({
   selector: 'app-movie-detail',
@@ -10,7 +12,6 @@ import {MovieService} from '../../services/movie.service';
 })
 export class MovieDetailComponent implements OnInit {
   movie: MovieDetailModel;
-  isFav: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,16 +21,21 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.getMovie(this.route.snapshot.params.id).subscribe(
-      (movie) => {
+      (movie: MovieDetailModel) => {
         this.movie = movie;
-        this.isFav = !!this.movieService.isFavorite(movie);
+        this.movie.favorite = !!this.movieService.isFavorite(movie);
       }
     );
   }
 
   onToggleFavorite() {
-    this.isFav = !this.isFav;
     this.movieService.toggleFavorite(this.movie);
+    this.movieService.favoriteWasUpdated.subscribe(
+     (movie: Movie | MovieDetailModel) => {
+       this.movie.favorite = movie.favorite;
+     }
+   );
+    console.log('Detail on favorite ---> ----', this.movie.favorite);
   }
 
   onLoadImage(path: string, size: string) {
