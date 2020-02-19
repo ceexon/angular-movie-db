@@ -1,5 +1,7 @@
 /* tslint:disable */
 
+import {GenreModel} from "./genre.model";
+
 export class MovieDetailModel {
   public adult: boolean;
   public backdrop_path: string;
@@ -33,7 +35,7 @@ export class MovieDetailModel {
     backdrop_path: string,
     belongs_to_collection: any,
     budget: number,
-    genres: {id: number, name: string} [],
+    genres: GenreModel [],
     homepage: string,
     id: number,
     imdb_id: string,
@@ -54,11 +56,12 @@ export class MovieDetailModel {
     video: boolean,
     vote_average: number,
     vote_count: number,
+    favorite = false
   ) {
-    this.adult = adult;
     this.backdrop_path = backdrop_path;
-    this.belongs_to_collection = belongs_to_collection;
     this.budget = budget;
+    this.belongs_to_collection = belongs_to_collection;
+    this.adult = adult;
     this.genres = genres;
     this.homepage = homepage;
     this.id = id;
@@ -75,11 +78,11 @@ export class MovieDetailModel {
     this.runtime = runtime;
     this.spoken_languages = spoken_languages;
     this.status = status;
+    this.favorite = favorite;
     this.tagline = tagline;
     this.title = title;
     this.video = video;
     this.vote_average = vote_average;
     this.vote_count = vote_count;
-    this.favorite = false;
   }
 }

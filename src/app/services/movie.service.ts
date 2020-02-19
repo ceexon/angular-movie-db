@@ -4,25 +4,51 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MovieDetailModel} from '../models/movie-detail.model';
+import {UpcomingMoviesModels} from '../models/upcoming-movies.models';
+import {GenreModel} from '../models/genre.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  constructor(private http: HttpClient) {
-  }
-
   private movies: Movie[] = [];
+  private genres: GenreModel[] = [];
+
 
   baseURL = environment.baseApiURL;
   apiKey = environment.apiKey;
   baseImg = environment.baseImageURL;
 
-  private favourites: any[] = this.movies.filter(m => m.favorite === true );
+  private favourites: Movie[] | MovieDetailModel[] | any[] =  [
+    {
+      popularity: 279.237,
+      vote_count: 201,
+      video: false,
+      poster_path: '/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg',
+      id: 454626,
+      adult: false,
+      backdrop_path: '/tCUcf3oNWMW8kwAj3WC6CvIN5ah.jpg',
+      original_language: 'en',
+      original_title: 'Sonic the Hedgehog',
+      genre_ids: [28, 12, 35, 878, 10751],
+      title: 'Sonic the Hedgehog',
+      vote_average: 7.2,
+      overview: 'Based on the global blockbuster video game franchise from Sega, Sonic the Hedgehog tells the ' +
+        'story of the world’s speediest hedgehog as he embraces his new home on Earth. In this live-action ' +
+        'adventure comedy, Sonic and his new best friend team up to defend the planet from the evil genius Dr. ' +
+        'Robotnik and his plans for world domination.',
+      release_date: '2020-02-12',
+      favorite: true
+    }
+  ];
+  // private favourites: Movie[] | MovieDetailModel[] | any[] = this.movies.filter(m => m.favorite === true );
+  constructor(private http: HttpClient) {
+  }
 
   favoritesUpdated = new EventEmitter<Movie[]>();
   moviesUpdated = new EventEmitter<Movie[]>();
+  favoriteWasUpdated = new EventEmitter<Movie | MovieDetailModel>();
 
   setMovies(movies: Movie[]) {
     if (this.favourites.length > 0) {
@@ -38,34 +64,64 @@ export class MovieService {
     this.movies = movies;
   }
 
-  fetUpcoming(): Observable <any> {
-    return this.http.get<any>(`${this.baseURL}movie/upcoming?api_key=${this.apiKey}`);
+  fetUpcoming(): Observable < UpcomingMoviesModels > {
+    return this.http.get< UpcomingMoviesModels >(`${this.baseURL}movie/upcoming?api_key=${this.apiKey}`);
+  }
+
+  fetGenres(): Observable < {genres: GenreModel[]} > {
+    return this.http.get< {genres: GenreModel[]} >(`${this.baseURL}genre/movie/list?api_key=${this.apiKey}`);
   }
 
   getMovie(id: number) {
-    return this.http.get<any>(`${this.baseURL}movie/${id}?api_key=${this.apiKey}`);
+    return this.http.get<MovieDetailModel>(`${this.baseURL}movie/${id}?api_key=${this.apiKey}`);
+  }
+
+  searchMovie(query: string): Observable < UpcomingMoviesModels > {
+    // return this.http.get<UpcomingMoviesModels>(`${this.baseURL}movie/search?query=${query}&api_key=${this.apiKey}`);
+    return this.http.get<UpcomingMoviesModels>(`${this.baseURL}search/movie?api_key=${this.apiKey}&query=${query}`);
+  }
+
+  addMovie(movie: Movie) {
+    this.movies.push(...[movie]);
+  }
+
+  getGenres() {
+    return this.genres;
+  }
+
+  setGenres(genres: GenreModel[]) {
+    this.genres = genres;
   }
 
   getFavorites() {
     return this.favourites.slice();
   }
 
-  isFavorite(movie: any) {
-    return this.movies.find(
+  isFavorite(movie: Movie| MovieDetailModel ) {
+    return this.favourites.find(
     (mov) => {
         return mov.id === movie.id;
       }
     );
   }
 
-  toggleFavorite(movie: any) {
-    const favMovie = this.isFavorite(movie);
-    if (favMovie.favorite) {
-      this.favourites = this.favourites.filter(mov => mov !== movie);
-    } else {
-      this.favourites.push(movie);
+  toggleFavorite(movie: MovieDetailModel | Movie) {
+    if ('genres' in movie && this.movies.length) {
+      // get equivalent movie from upcoming list
+      const initialFav = movie.favorite;
+      movie.favorite = !movie.favorite;
+      movie = this.movies.find(mov => {
+        return mov.id === movie.id;
+      });
+      movie.favorite = initialFav;
     }
-    favMovie.favorite = !favMovie.favorite;
+    if (movie.favorite) {
+      this.favourites = this.favourites.filter(mov => mov.id !== movie.id);
+    } else {
+      this.favourites.push(...[movie]);
+    }
+    movie.favorite = !movie.favorite;
+    this.favoriteWasUpdated.emit(movie);
     this.favoritesUpdated.emit(this.favourites.slice());
     this.moviesUpdated.emit(this.movies.slice());
   }
