@@ -5,12 +5,17 @@
         id="query"
         name="query"
         type="text"
+        test-data-target="search-bar"
         class="form-control shadow-none rounded-left rounded-left-0"
         placeholder="search here for movies"
         [(ngModel)]="query"
       >
   </div>
-  <button type="submit" class=" form-group border-0 px-5 search-btn-box position-absolute text-white bg-red rounded-right">
+  <button
+    type="submit"
+    class="search-btn form-group border-0 px-5 search-btn-box position-absolute text-white bg-red rounded-right"
+    test-data-target="search-btn"
+  >
     Search
   </button>
 </form>
