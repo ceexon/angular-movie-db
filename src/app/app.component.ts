@@ -10,6 +10,8 @@ import {Observable} from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
+  title = 'app component';
+
   constructor(private router: Router) {
   }
   ngOnInit(): void {
