@@ -35,7 +35,6 @@ export class MovieDetailComponent implements OnInit {
        this.movie.favorite = movie.favorite;
      }
    );
-    console.log('Detail on favorite ---> ----', this.movie.favorite);
   }
 
   onLoadImage(path: string, size: string) {
