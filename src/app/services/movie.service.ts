@@ -90,7 +90,7 @@ export class MovieService {
       movie.favorite = !movie.favorite;
       movie = this.movies.find(mov => {
         return mov.id === movie.id;
-      });
+      }) || movie;
       movie.favorite = initialFav;
     }
     if (movie.favorite) {
