@@ -21,6 +21,7 @@ export class MovieService {
   baseImg = environment.baseImageURL;
 
   private favourites: Movie[] | MovieDetailModel[] | any[] = this.movies.filter(m => m.favorite === true );
+  
   constructor(private http: HttpClient) {
   }
 
